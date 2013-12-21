@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<body>
+	<audio async id='pew_sound'>
+		<source src="audio/pew.mp3" type="audio/mpeg">
+	</audio>
+	<canvas style='width: 100%; height: 100%;'></canvas>
+	<script async src='js/Mouse.js'></script>
+	<script async src='js/Triangle.js'></script>
+	<script async src='js/Game.js'></script>
+	<script async src='js/Line.js'></script>
+	<script>
+		function Main() {
+			if ( typeof (Mouse) !== "undefined" && 
+			typeof (Triangle) !== "undefined" && 
+			typeof (Game) !== "undefined" &&
+			typeof (Line) !== "undefined" ) {
+				//Create a new game
+				var g = new Game();
+				//Start the LOOP!
+				g.mainLoop();
+			} else {
+				setTimeout(Main, 100);
+			}
+		};
+		Main();
+	</script>
+</body>
