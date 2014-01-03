@@ -9,6 +9,8 @@ function Game() {
 	this.c = document.getElementsByTagName("canvas")[0];
 	this.c.style.cursor = "none";
 	this.ctx = this.c.getContext('2d');
+	
+	this.camera = new Camera(this);
 
 	//Set Resolution
 	this.c.width = screen.width;
@@ -19,10 +21,12 @@ function Game() {
 	this.objects = new Array();
 	this.triangle = new Triangle(this, 'blue');
 	this.mouse = new Mouse(this);
+	this.three_dee_box = new ThreeDeeBox(this);
 	
 	//Add game objects to objects array
 	this.objects.push(this.mouse);
 	this.objects.push(this.triangle);
+	this.objects.push(this.three_dee_box);
 	//this.objects.push(new Line(this, this.triangle, this.mouse));
 
 	//Setup event handlers
@@ -68,7 +72,7 @@ Game.prototype.mainLoop = function() {
  */
 Game.prototype.mm = function(m1, m2, out){
 	var by_2 = 0, by_2_b = 0, mod = 0;
-    for (var i = 0, _len = out.length; i < _len; i++){
+     for (var i = 0, _len = out.length; i < _len; i++){
     		mod = i % 2;
   		out[i] = (m1[mod] * m2[by_2]) + (m1[mod+2] * m2[by_2+1]);
   		if(by_2_b === 1){

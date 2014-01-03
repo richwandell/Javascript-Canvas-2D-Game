@@ -6,6 +6,7 @@ function Mouse(game) {
 	this.ctx = game.ctx;
 	this.x = 0;
 	this.y = 0;
+	this.z = 0;
 	//Center point
 	this.center = new Float32Array(2);
 	//All points
@@ -38,6 +39,7 @@ Mouse.prototype.getMousePos = function(evt) {
 Mouse.prototype.draw = function() {
 	this.update();
 	this.ctx.beginPath();
+	this.ctx.strokeStyle = "black";
 	this.ctx.lineWidth = 10;	
 	//Draw circle
 	this.ctx.arc(this.x, this.y, this.radius, 0, 6.283185307179586);
