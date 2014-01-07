@@ -77,9 +77,9 @@ Triangle.prototype.scale = function(x, y){
  * - Translate the triangle back into position
  */
 Triangle.prototype.rotate = function(){		
-	this.game.calcRotationMatrix(this.m1, this.angle);
+	this.game.crm2d(this.m1, this.angle);
 	this.translateToOrigin();
-	this.game.mm(this.m1, this.ttp, this.rtp);
+	this.game.mm2d(this.m1, this.ttp, this.rtp);
 	this.translateBack();	
 };
 
@@ -142,4 +142,5 @@ Triangle.prototype.draw = function() {
 	this.ctx.lineTo(this.points[4], this.points[5]);
 	this.ctx.fillStyle = this.color;
 	this.ctx.fill();
+	
 }; 

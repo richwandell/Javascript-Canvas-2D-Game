@@ -2,42 +2,31 @@ function ThreeDeeBox(game){
      this.game = game;
      this.ctx = game.ctx;
      this.toDraw = [];
-     this.vertices = [
-          {x:100, y:100, z: 100},
-          {x:-100, y:100, z: 100},
-          {x:-100, y:-100, z: 100},
-          {x:100, y:-100, z: 100},
-          {x:100, y:100, z: -100},
-          {x:-100, y:100, z: -100},
-          {x:-100, y:-100, z: -100},
-          {x:100, y:-100, z: -100},
-          
-          {x: 50, y:40, z: -500, offset:0},
-          {x: -50, y:40, z: -500, offset:0},
-          {x: -50, y:-40, z: -500, offset:0},
-          {x: 50, y:-40, z: -500, offset:0},
-          {x: 0, y:0, z: -600, offset:-100},
-          
-          {x: 0, y:0, z: -400, offset:50},
-          {x: 0, y:150, z: -600, offset:-100},
-          {x: 150, y:0, z: -600, offset:-100},
-          
-     ];
      
-     this.points = [
-          {p:0},
-          {p:1},
-          {p:2},
-          {p:3},
-          {p:4},
-          {p:5},
-          {p:6},
-          {p:7}
-     ];
-     for(var i=0; i < this.points.length; i++){
-          var point = this.points[i];
-          point.p = this.vertices[point.p];
-     }
+     this.points = new Float32Array(
+     	100, 100, 100,
+        -100, 100, 100,
+        -100, -100, 100,
+        100, -100, 100,
+        100, 100, -100,
+        -100, 100, -100,
+        -100, -100, -100,
+        100, -100, -100
+     );
+     this.tmatrix = new Float32Array(
+     	100, 100, 100,
+        -100, 100, 100,
+        -100, -100, 100,
+        100, -100, 100,
+        100, 100, -100,
+        -100, 100, -100,
+        -100, -100, -100,
+        100, -100, -100    	
+     );
+};
+
+ThreeDeeBox.prototype.translateToOrigin = function(){
+	
 };
 
 ThreeDeeBox.prototype.update = function(){          
@@ -45,8 +34,8 @@ ThreeDeeBox.prototype.update = function(){
      this.game.mouse.z = this.game.mouse.z < 25 ? this.game.mouse.z : 25;
      var offset = (this.game.mouse.z)*20;
      
-     this.game.camera.ry = -(this.game.triangle.x / this.game.c.width /*- 0.5*/) * Math.PI*2;
-     this.game.camera.rx = (this.game.triangle.y / this.game.c.height /*- 0.5*/) * Math.PI;
+     this.game.camera.ry = (this.game.triangle.x / (this.game.c.width*2) /*- 0.5*/) * Math.PI//*2;
+     this.game.camera.rx = -(this.game.triangle.y / (this.game.c.height*2) /*- 0.5*/) //* Math.PI;
      
      this.game.camera.y = -Math.sin(this.game.camera.rx)*(700);
      var ryRadius = Math.cos(this.game.camera.rx)*(700);
@@ -117,9 +106,8 @@ ThreeDeeBox.prototype.draw = function(){
           x2 = 10*item.posZ,
           y2 = 10*item.posZ;
           
-          this.ctx.fillRect(x1, y1, x2, y2);
-          //this.ctx.arc(x1, y1, 2, 0, 6.283185307179586);
-     }
-     //this.ctx.fill();
+          this.ctx.fillRect(x1, y1, x2, y2);              
+     }     
+     
 };
 
