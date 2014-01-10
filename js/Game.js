@@ -27,12 +27,12 @@ function Game(node) {
 	//Create the game objects
 	this.objects = new Array();
 	this.triangle = new Triangle(this, 'blue');
-	//this.three_dee_box = new ThreeDeeBox(this);
+	this.three_dee_box = new ThreeDeeBox(this);
 	this.mouse = new Mouse(this);
 	
 	//Add game objects to objects array
 	this.objects.push(this.triangle);
-	//this.objects.push(this.three_dee_box);
+	this.objects.push(this.three_dee_box);
 	this.objects.push(this.mouse);
 	//this.objects.push(new Line(this, this.triangle, this.mouse));
 
