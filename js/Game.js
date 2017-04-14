@@ -187,10 +187,10 @@ Game.prototype.mp3d = function(m, p1, p2){
 	this.midpoint3d[1] = (m[n + 1] + m[n1 + 1]) / 2;
 	this.midpoint3d[2] = (m[n + 2] + m[n1 + 2]) / 2;
 	return this.midpoint3d;
-}
+};
 
 
-if(require){
+if(typeof require !== "undefined"){
 	console.log("im probably in node");
 	var g = new Game(true);
 	var m1 = new Array(
